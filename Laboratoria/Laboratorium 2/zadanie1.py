@@ -7,8 +7,9 @@ from OpenGL.GL import *
 from OpenGL.GLU import *
 
 
-def startup():
-    update_viewport(None, 400, 400)
+def startup(window):
+    width, height = glfwGetFramebufferSize(window)
+    update_viewport(window, width, height)
     glClearColor(0.5, 0.5, 0.5, 1.0)
 
 
@@ -19,24 +20,22 @@ def shutdown():
 def render(time):
     glClear(GL_COLOR_BUFFER_BIT)
 
-    glColor3f(0.0, 1.0, 0.0)
     glBegin(GL_TRIANGLES)
-    glVertex2f(0.0, 0.0)
-    glVertex2f(0.0, 50.0)
-    glVertex2f(50.0, 0.0)
-    glEnd()
+    glColor3f(1.0, 0.0, 0.0)      # czerwony
+    glVertex2f(-50.0, -50.0)
 
-    glColor3f(1.0, 0.0, 0.0)
-    glBegin(GL_TRIANGLES)
-    glVertex2f(0.0, 0.0)
+    glColor3f(0.0, 1.0, 0.0)      # zielony
+    glVertex2f(50.0, -50.0)
+
+    glColor3f(0.0, 0.0, 1.0)      # niebieski
     glVertex2f(0.0, 50.0)
-    glVertex2f(-50.0, 0.0)
     glEnd()
 
     glFlush()
 
 
 def update_viewport(window, width, height):
+    print("viewport:", width, height)
     if width == 0:
         width = 1
     if height == 0:
@@ -71,7 +70,7 @@ def main():
     glfwSetFramebufferSizeCallback(window, update_viewport)
     glfwSwapInterval(1)
 
-    startup()
+    startup(window)
     while not glfwWindowShouldClose(window):
         render(glfwGetTime())
         glfwSwapBuffers(window)
