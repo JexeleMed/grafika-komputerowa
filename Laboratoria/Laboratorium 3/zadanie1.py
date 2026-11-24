@@ -9,7 +9,7 @@ from OpenGL.GL import *
 from OpenGL.GLU import *
 
 
-N = 20
+N = 50
 tab = numpy.zeros((N, N, 3))
 
 

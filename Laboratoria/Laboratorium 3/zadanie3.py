@@ -100,6 +100,7 @@ def update_viewport(window, width, height):
         height = 1
     aspect_ratio = width / height
 
+    glShadeModel(GL_SMOOTH)
     glMatrixMode(GL_PROJECTION)
     glViewport(0, 0, width, height)
     glLoadIdentity()
